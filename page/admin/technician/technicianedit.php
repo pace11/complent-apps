@@ -1,0 +1,161 @@
+<div class="main-content">
+    <?php 
+        $g      = mysqli_query($conn, "SELECT * FROM technician WHERE id='$_GET[id]'");
+        $data   = mysqli_fetch_array($g);    
+    ?>
+    <section class="section">
+        <div class="section-header">
+            <h1>Teknisi</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Form edit teknisi</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="?page=technicianaddpro" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="badge badge-primary"><?= $data['id'] ?></div>
+                                    <input type="hidden" name="id" value="<?= $data['id'] ?>">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nama Lengkap <small class="text-danger">*</small></label>
+                                        <input type="text" class="form-control" name="fullname" placeholder="masukkan nama lengkap ..." autocomplete="off" value="<?= $data['full_name'] ?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Email <small class="text-danger">*</small></label>
+                                        <input type="email" class="form-control" name="email" placeholder="masukkan email ..." autocomplete="off" value="<?= $data['email'] ?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Date of birth <small class="text-danger">*</small></label>
+                                        <input type="date" class="form-control" name="dob" placeholder="masukkan tanggal lahir ..." autocomplete="off" value="<?= date('d/m/Y', strtotime($data['date_of_birth'])) ?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Provincy <small class="text-danger">*</small></label>
+                                                <select class="form-control" name="provincy" id="provincy">
+                                                    <?php 
+                                                        $q = mysqli_query($conn, "SELECT * from provinces");
+                                                        while($datas = mysqli_fetch_array($q)){
+                                                            echo '<option value='.$datas['id'].'>'.$datas['name'].'</option>';
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Regency <small class="text-danger">*</small></label>
+                                                <select class="form-control" name="regency" id="regency">
+                                                    <option value="">-- select regency --</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>District <small class="text-danger">*</small></label>
+                                                <select class="form-control" name="district" id="district">
+                                                    <option value="">-- select district --</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Lead Technician <small class="text-danger">*</small></label>
+                                        <select class="form-control" name="leadtech">
+                                            <?php 
+                                                $qe = mysqli_query($conn, "SELECT lead_technician.full_name as fullname, lead_technician.id as idlead, regencies.name as nameregency from lead_technician
+                                                                        JOIN regencies ON lead_technician.regency_id=regencies.id");
+                                                while($row = mysqli_fetch_array($qe)){ ?>
+                                                    <option value="<?= $row['idlead'] ?>" <?= $data['lead_technician_id'] == $row['idlead'] ? 'selected' : '' ?>><?= $row['fullname']." [".$row['nameregency']."]" ?></option>
+                                            <?php } ?>
+                                            <option value="">-- lead technician not available --</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>password <small class="text-danger">*</small></label>
+                                        <input id="password-field" type="password" class="form-control" name="password" placeholder="masukkan password ..." autocomplete="off" value="<?= $data['password'] ?>" required>
+                                        <span toggle="#password-field" class="fa fa-eye field-icon toggle-password"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Handphone <small class="text-danger">*</small></label>
+                                        <input type="text" class="form-control" maxlength="12" onkeyup="this.value=this.value.replace(/[^\d]/,'')" name="hp" placeholder="masukkan no hp ..." autocomplete="off" value="<?= $data['handphone'] ?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Address <small class="text-danger">*</small></label>
+                                        <textarea class="form-control" name="address" placeholder="masukkan alamat ..." autocomplete="off" required><?= $data['full_address'] ?></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="card-footer">
+                        <input type="submit" name="submit" class="btn btn-primary" value="Simpan">
+                        <a href="?page=technician" class="btn btn-secondary">Batal</a>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<footer class="main-footer">
+    <div class="footer-left">
+        Copyright &copy; 2020 <div class="bullet"></div> Bearlink
+    </div>
+    <div class="footer-right">
+        V 1.0.0
+    </div>
+</footer>
+</div>
+</div>
+<?php
+    include "script.php";
+    include "jq.php";
+?>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".toggle-password").click(function() {
+            $(this).toggleClass("fa-eye-slash");
+                var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+    });
+</script>
