@@ -14,7 +14,7 @@
                         <h4>Form edit teknisi</h4>
                     </div>
                     <div class="card-body">
-                        <form action="?page=technicianaddpro" method="post" enctype="multipart/form-data">
+                        <form action="?page=technicianeditpro" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="badge badge-primary"><?= $data['id'] ?></div>
@@ -40,8 +40,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Date of birth <small class="text-danger">*</small></label>
-                                        <input type="date" class="form-control" name="dob" placeholder="masukkan tanggal lahir ..." autocomplete="off" value="<?= date('d/m/Y', strtotime($data['date_of_birth'])) ?>" required>
+                                        <label>Tanggal Lahir <small class="text-danger">*</small></label>
+                                        <input type="date" class="form-control" name="dob" placeholder="masukkan tanggal lahir ..." autocomplete="off" value="<?= date('Y-m-d', strtotime($data['date_of_birth'])) ?>" required>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Provincy <small class="text-danger">*</small></label>
+                                                <label>Provinsi <small class="text-danger">*</small></label>
                                                 <select class="form-control" name="provincy" id="provincy">
                                                     <?php 
                                                         $q = mysqli_query($conn, "SELECT * from provinces");
@@ -63,17 +63,17 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Regency <small class="text-danger">*</small></label>
+                                                <label>Kota <small class="text-danger">*</small></label>
                                                 <select class="form-control" name="regency" id="regency">
-                                                    <option value="">-- select regency --</option>
+                                                    <option value="">-- pilih salah satu kota --</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>District <small class="text-danger">*</small></label>
+                                                <label>Distrik <small class="text-danger">*</small></label>
                                                 <select class="form-control" name="district" id="district">
-                                                    <option value="">-- select district --</option>
+                                                    <option value="">-- pilih salah satu distrik --</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -83,7 +83,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Lead Technician <small class="text-danger">*</small></label>
+                                        <label>Lead Teknisi <small class="text-danger">*</small></label>
                                         <select class="form-control" name="leadtech">
                                             <?php 
                                                 $qe = mysqli_query($conn, "SELECT lead_technician.full_name as fullname, lead_technician.id as idlead, regencies.name as nameregency from lead_technician
@@ -100,7 +100,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>password <small class="text-danger">*</small></label>
-                                        <input id="password-field" type="password" class="form-control" name="password" placeholder="masukkan password ..." autocomplete="off" value="<?= $data['password'] ?>" required>
+                                        <input id="password-field" type="password" class="form-control" name="password" placeholder="masukkan password ..." autocomplete="off" value="<?= $data['password'] ?>" maxlength="10" required>
                                         <span toggle="#password-field" class="fa fa-eye field-icon toggle-password"></span>
                                     </div>
                                 </div>
@@ -116,7 +116,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Address <small class="text-danger">*</small></label>
+                                        <label>Alamat <small class="text-danger">*</small></label>
                                         <textarea class="form-control" name="address" placeholder="masukkan alamat ..." autocomplete="off" required><?= $data['full_address'] ?></textarea>
                                     </div>
                                 </div>
@@ -146,6 +146,43 @@
     include "script.php";
     include "jq.php";
 ?>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#provincy').on('change',function(){
+        var provincyId = $(this).val();
+        if(provincyId){
+            $.ajax({
+                type:'POST',
+                url:'ajaxdata.php',
+                data:'provincy_id='+provincyId,
+                success:function(html){
+                    $('#regency').html(html);
+                    $('#district').html('<option value="">-- pilih salah satu distrik --</option>');
+                }
+            }); 
+        }else{
+            $('#regency').html('<option value="">-- pilih salah satu kota --</option>');
+            $('#district').html('<option value="">-- pilih salah satu distrik --</option>');
+        }
+    });
+
+    $('#regency').on('change',function(){
+        var regencyId = $(this).val();
+        if(regencyId){
+            $.ajax({
+                type:'POST',
+                url:'ajaxdata.php',
+                data:'regency_id='+regencyId,
+                success:function(html){
+                    $('#district').html(html);
+                }
+            }); 
+        }else{
+            $('#district').html('<option value="">-- pilih salah satu distrik --</option>'); 
+        }
+    });
+});
+</script>
 <script type="text/javascript">
     $(document).ready(function(){
         $(".toggle-password").click(function() {

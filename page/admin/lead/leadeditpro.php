@@ -1,13 +1,13 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Teknisi</h1>
+            <h1>Lead Teknisi</h1>
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Form edit teknisi</h4>
+                        <h4>Form edit lead teknisi</h4>
                     </div>
                     <div class="card-body">
                         <?php 
@@ -19,7 +19,6 @@
                             $provincy   = $_POST['provincy'];
                             $regency    = $_POST['regency'];
                             $district   = $_POST['district'];
-                            $leadtech   = $_POST['leadtech'];
                             $password   = $_POST['password'];
                             $handphone  = $_POST['handphone'];
                             $address    = addslashes($_POST['address']);
@@ -28,7 +27,6 @@
                                             province_id        = '$provincy',
                                             regency_id         = '$regency',
                                             district_id        = '$district',
-                                            lead_technician_id = '$leadtech',
                                             full_name          = '$fullname',
                                             email              = '$email',
                                             password           = '$password',
@@ -43,7 +41,7 @@
                                         '</div>'.
                                     '</div>';
                                 echo "<meta http-equiv='refresh' content='1;
-                                url=?page=pelanggan'>";
+                                url=?page=lead'>";
                             }
                         }
                         ?>

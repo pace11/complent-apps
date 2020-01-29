@@ -1,28 +1,28 @@
 <div class="main-content">
     <?php 
-        $get_id = mysqli_query($conn, "SELECT id FROM technician WHERE SUBSTRING(id,1,1)='T'") or die (mysqli_error($conn));
-        $trim_id = mysqli_query($conn, "SELECT SUBSTRING(id,-5,5) as hasil FROM technician WHERE SUBSTRING(id,1,1)='T' ORDER BY hasil DESC LIMIT 1") or die (mysqli_error($conn));
+        $get_id = mysqli_query($conn, "SELECT id FROM lead_technician WHERE SUBSTRING(id,1,2)='TL'") or die (mysqli_error($conn));
+        $trim_id = mysqli_query($conn, "SELECT SUBSTRING(id,-5,5) as hasil FROM lead_technician WHERE SUBSTRING(id,1,2)='TL' ORDER BY hasil DESC LIMIT 1") or die (mysqli_error($conn));
         $hit    = mysqli_num_rows($get_id);
         if ($hit == 0){
-            $id_k   = "T00001";
+            $id_k   = "TL00001";
         } else if ($hit > 0){
             $row    = mysqli_fetch_array($trim_id);
             $kode   = $row['hasil']+1;
-            $id_k   = "T".str_pad($kode,5,"0",STR_PAD_LEFT); 
+            $id_k   = "TL".str_pad($kode,5,"0",STR_PAD_LEFT); 
         }      
     ?>
     <section class="section">
         <div class="section-header">
-            <h1>Teknisi</h1>
+            <h1>Lead Teknisi</h1>
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Form tambah teknisi</h4>
+                        <h4>Form tambah lead teknisi</h4>
                     </div>
                     <div class="card-body">
-                        <form action="?page=technicianaddpro" method="post" enctype="multipart/form-data">
+                        <form action="?page=leadaddpro" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="badge badge-primary"><?= $id_k ?></div>
@@ -92,23 +92,6 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Lead Teknisi <small class="text-danger">*</small></label>
-                                        <select class="form-control" name="leadtech">
-                                            <?php 
-                                                $qe = mysqli_query($conn, "SELECT lead_technician.full_name as fullname, lead_technician.id as idlead, regencies.name as nameregency from lead_technician
-                                                                        JOIN regencies ON lead_technician.regency_id=regencies.id");
-                                                while($data = mysqli_fetch_array($qe)){
-                                                    echo '<option value='.$data['idlead'].'>'.$data['fullname'].' ['.$data['nameregency'].']</option>';
-                                                }
-                                                echo '<option value="">-- lead technician not available --</option>';
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
                                         <label>Password <small class="text-danger">*</small></label>
                                         <input id="password-field" type="password" class="form-control" name="password" placeholder="masukkan password ..." autocomplete="off" maxlength="10" required>
                                         <span toggle="#password-field" class="fa fa-eye field-icon toggle-password"></span>
@@ -134,7 +117,7 @@
                     </div>
                     <div class="card-footer">
                         <input type="submit" name="submit" class="btn btn-primary" value="Simpan">
-                        <a href="?page=technician" class="btn btn-secondary">Batal</a>
+                        <a href="?page=lead" class="btn btn-secondary">Batal</a>
                     </div>
                     </form>
                 </div>

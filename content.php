@@ -15,6 +15,15 @@
       elseif ($page == "technicianeditpro")            include("page/admin/technician/technicianeditpro.php");
       elseif ($page == "technicianview")               include("page/admin/technician/technicianview.php");
       elseif ($page == "techniciandelete")             include("page/admin/technician/techniciandelete.php");
+
+      // ---------------------------- lead ----------------------------
+      elseif ($page == "lead")                         include("page/admin/lead/lead.php");
+      elseif ($page == "leadadd")                      include("page/admin/lead/leadadd.php");
+      elseif ($page == "leadaddpro")                   include("page/admin/lead/leadaddpro.php");
+      elseif ($page == "leadedit")                     include("page/admin/lead/leadedit.php");
+      elseif ($page == "leadeditpro")                  include("page/admin/lead/leadeditpro.php");
+      elseif ($page == "leadview")                     include("page/admin/lead/leadview.php");
+      elseif ($page == "leaddelete")                   include("page/admin/lead/leaddelete.php");
     break;
     case 2:
       if (isset($_GET['page'])) $page=$_GET['page'];

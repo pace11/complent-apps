@@ -11,7 +11,7 @@ if(isset($_POST["provincy_id"]) && !empty($_POST["provincy_id"])){
             echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
         }
     }else{
-        echo '<option value="">-- regency not available --</option>';
+        echo '<option value="">-- kota tidak ditemukan --</option>';
     }
 }
 
@@ -24,7 +24,7 @@ if(isset($_POST["regency_id"]) && !empty($_POST["regency_id"])){
             echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
         }
     }else{
-        echo '<option value="">-- district not available --</option>';
+        echo '<option value="">-- distrik tidak ditemukan --</option>';
     }
 }
 
