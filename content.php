@@ -47,7 +47,7 @@
       if ($page == "beranda") include("page/technician/beranda.php");
 
       // ---------------------------- profil ----------------------------
-      elseif ($page == "profil")                       include("page/technician/profile/profile.php");
+      elseif ($page == "profile")                      include("page/technician/profile/profile.php");
 
       // ---------------------------- complaint ----------------------------
       elseif ($page == "complaint")                    include("page/technician/complaint/complaint.php");
@@ -60,6 +60,9 @@
       else $page="beranda";
       
       if ($page == "beranda") include("page/lead/beranda.php");
+
+      // ---------------------------- profil ----------------------------
+      elseif ($page == "profile")                      include("page/lead/profile/profile.php");
 
       // ---------------------------- complaint ----------------------------
       elseif ($page == "complaint")                    include("page/lead/complaint/complaint.php");
@@ -82,6 +85,9 @@
       else $page="beranda";
       
       if ($page == "beranda") include("page/client/beranda.php");
+
+      // ---------------------------- profil ----------------------------
+      elseif ($page == "profile")                      include("page/client/profile/profile.php");
 
       // ---------------------------- complaint ----------------------------
       elseif ($page == "complaint")                    include("page/client/complaint/complaint.php");

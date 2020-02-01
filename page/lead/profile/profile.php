@@ -22,7 +22,7 @@
                     $lng        = $_POST['lng'];
                     $update     = date('Y-m-d H:i:s');
 
-                    $update = mysqli_query($conn, "UPDATE technician SET
+                    $update = mysqli_query($conn, "UPDATE lead_technician SET
                                         province_id      = '$provincy',
                                         regency_id       = '$regency',
                                         district_id      = '$district',

@@ -1,3 +1,7 @@
+<?php 
+    $hit     = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM complent_issue WHERE lead_technician_id='$auth[id]'"));
+    $hittech = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM technician WHERE lead_technician_id='$auth[id]'"));
+?>
 <div class="main-content">
     <section class="section">
         <div class="section-header">
@@ -7,26 +11,26 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-danger">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-inbox"></i>
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Total Pelanggan</h4>
+                            <h4>Total Komplain</h4>
                         </div>
-                        <div class="card-body">10</div>
+                        <div class="card-body"><?= $hit ?></div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-warning">
-                        <i class="fas fa-calendar-alt"></i>
+                        <i class="fas fa-users"></i>
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Jadwal</h4>
+                            <h4>Total Teknisi</h4>
                         </div>
-                        <div class="card-body">10</div>
+                        <div class="card-body"><?= $hittech ?></div>
                     </div>
                 </div>
             </div>

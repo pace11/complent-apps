@@ -97,7 +97,8 @@
                   }
 
                   if ($hit2 > 0){
-                    
+
+                    mysqli_query($conn, "UPDATE technician SET status='online' WHERE id='$data2[id]'");
                     echo '<div class="alert alert-success alert-dismissible show fade">'.
                             '<div class="alert-body"><button class="close" data-dismiss="alert"><span>×</span></button>'.
                               'Login berhasil <i class="fas fa-check-circle"></i></div>'.
@@ -113,6 +114,7 @@
 
                   if ($hit3 > 0){
                     
+                    mysqli_query($conn, "UPDATE lead_technician SET status='online' WHERE id='$data3[id]'");
                     echo '<div class="alert alert-success alert-dismissible show fade">'.
                             '<div class="alert-body"><button class="close" data-dismiss="alert"><span>×</span></button>'.
                               'Login berhasil <i class="fas fa-check-circle"></i></div>'.

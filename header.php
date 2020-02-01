@@ -22,7 +22,7 @@
     <div class="d-sm-none d-lg-inline-block">Hi, <?= $auth['full_name'] ?></div></a>
     <div class="dropdown-menu dropdown-menu-right">
         <div class="dropdown-title"><?= $auth['full_name'] ?></div>
-        <a href="?page=profil&id=<?= $auth['id'] ?>" class="dropdown-item has-icon">
+        <a href="?page=profile" class="dropdown-item has-icon">
             <i class="far fa-user"></i> Profile
         </a>
         <div class="dropdown-divider"></div>

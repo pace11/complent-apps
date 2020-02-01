@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 22, 2020 at 05:52 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Generation Time: Feb 01, 2020 at 06:04 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.3.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -56,11 +56,19 @@ CREATE TABLE `complent_issue` (
   `lead_technician_id` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `technician_id` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('inprogress','done') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('inprogress','failed','done') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `complent_issue`
+--
+
+INSERT INTO `complent_issue` (`id`, `user_id`, `lead_technician_id`, `technician_id`, `description`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(10, 'USER00001', NULL, 'T00002', 'AC tidak berfungsi', 'inprogress', '2020-02-01 15:46:40', '2020-02-01 19:43:47', NULL),
+(11, 'USER00002', 'TL00002', 'T00002', 'Paket Data Habis, Tolong Dong', 'inprogress', '2020-02-01 19:12:59', '2020-02-01 19:19:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -7318,12 +7326,10 @@ CREATE TABLE `lead_technician` (
   `district_id` char(7) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `full_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `handphone` varchar(12) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_of_birth` date NOT NULL,
   `full_address` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` enum('online','offline') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lat` decimal(10,8) DEFAULT NULL,
   `lng` decimal(11,8) DEFAULT NULL,
@@ -7336,10 +7342,11 @@ CREATE TABLE `lead_technician` (
 -- Dumping data for table `lead_technician`
 --
 
-INSERT INTO `lead_technician` (`id`, `province_id`, `regency_id`, `district_id`, `full_name`, `email`, `email_verified_at`, `password`, `handphone`, `date_of_birth`, `full_address`, `remember_token`, `status`, `lat`, `lng`, `created_at`, `updated_at`, `deleted_at`) VALUES
-('TL00001', '31', '3172', '3172020', 'Evan Razak', 'evanrazak@gmail.com', NULL, 'evan10', '082200002222', '1993-05-05', 'Jl. Pembangunan Ciracas Jakarta Timur', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('TL00002', '31', '3174', '3174070', 'Muhammad Ibnu Mustafa', 'ibnumustafa@gmail.com', NULL, 'ibnu10', '081100002222', '1996-05-05', 'Jl. Cempaka Hijau Duri Kosambi Jakarta Barat', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('TL00003', '31', '3175', '3175010', 'Ahmad Sadam', 'ahmadsadam@gmail.com', NULL, 'ahmad10', '081200002222', '1994-05-05', 'Jl. Kelapa Sawit Penjaringan Jakarta Utara', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `lead_technician` (`id`, `province_id`, `regency_id`, `district_id`, `full_name`, `email`, `password`, `handphone`, `date_of_birth`, `full_address`, `status`, `lat`, `lng`, `created_at`, `updated_at`, `deleted_at`) VALUES
+('TL00001', '31', '3172', '3172020', 'Evan Razak', 'evanrazak@gmail.com', 'evan10', '082200002222', '1993-05-05', 'Jl. Pembangunan Ciracas Jakarta Timur', 'online', '-6.16566620', '106.72286350', NULL, '2020-02-01 23:51:38', NULL),
+('TL00002', '31', '3174', '3174070', 'Muhammad Ibnu Mustafa', 'ibnumustafa@gmail.com', 'ibnu10', '081100002222', '1996-05-05', 'Jl. Cempaka Hijau Duri Kosambi Jakarta Barat', 'offline', '-6.16566620', '106.72286350', NULL, '2020-02-01 23:46:36', NULL),
+('TL00003', '31', '3175', '3175010', 'Ahmad Sadam', 'ahmadsadam@gmail.com', 'ahmad10', '081200002222', '1994-05-05', 'Jl. Kelapa Sawit Penjaringan Jakarta Utara', 'offline', '-6.16566620', '106.72286350', NULL, '2020-02-01 23:34:29', NULL),
+('TL00004', '31', '3174', '3174070', 'Ageng Maulana', 'ageng@gmail.com', 'ageng10', '085757383939', '2020-01-07', 'Jl. Cengkareng Raya Sekali', 'offline', '-6.16563400', '106.72287100', NULL, '2020-02-01 23:33:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -7944,12 +7951,10 @@ CREATE TABLE `technician` (
   `lead_technician_id` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `full_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `handphone` varchar(12) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `handphone` varchar(12) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date_of_birth` date NOT NULL,
   `full_address` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` enum('online','offline') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lat` decimal(10,8) DEFAULT NULL,
   `lng` decimal(11,8) DEFAULT NULL,
@@ -7962,9 +7967,9 @@ CREATE TABLE `technician` (
 -- Dumping data for table `technician`
 --
 
-INSERT INTO `technician` (`id`, `province_id`, `regency_id`, `district_id`, `lead_technician_id`, `full_name`, `email`, `email_verified_at`, `password`, `handphone`, `date_of_birth`, `full_address`, `remember_token`, `status`, `lat`, `lng`, `created_at`, `updated_at`, `deleted_at`) VALUES
-('T00001', '31', '3172', '3172020', 'TL00001', 'Muhammad Iriansyah Putra Pratama', 'ryanjoker87@gmail.com', NULL, 'ryan10', '082248080870', '1996-06-05', 'Jl. Merdeka Jakarta Timur', NULL, 'online', NULL, NULL, NULL, NULL, NULL),
-('T00002', '31', '3174', '3174050', 'TL00002', 'Erlanggan Thufail', 'erlangga@gmail.com', NULL, 'er10', '', '2020-01-22', 'Jl. Tambora terus ke dalam', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `technician` (`id`, `province_id`, `regency_id`, `district_id`, `lead_technician_id`, `full_name`, `email`, `password`, `handphone`, `date_of_birth`, `full_address`, `status`, `lat`, `lng`, `created_at`, `updated_at`, `deleted_at`) VALUES
+('T00001', '31', '3172', '3172020', 'TL00001', 'Muhammad Iriansyah Putra Pratama', 'ryanjoker87@gmail.com', 'ryan10', '082248080870', '1996-06-05', 'Jl. Merdeka Jakarta Timur', 'offline', '-6.16564100', '106.72284590', NULL, '2020-02-01 23:28:49', NULL),
+('T00002', '31', '3174', '3174050', 'TL00002', 'Erlangga Thufail', 'erlangga@gmail.com', 'er10', '098789789789', '2020-01-22', 'Jl. Tambora terus ke dalam', 'offline', '-6.16564100', '106.72284380', NULL, '2020-02-01 23:04:10', NULL);
 
 -- --------------------------------------------------------
 
@@ -7979,16 +7984,24 @@ CREATE TABLE `users` (
   `district_id` char(7) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `full_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
   `handphone` varchar(12) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_of_birth` date NOT NULL,
   `full_address` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lat` decimal(10,8) DEFAULT NULL,
+  `lng` decimal(11,8) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `province_id`, `regency_id`, `district_id`, `full_name`, `email`, `password`, `handphone`, `date_of_birth`, `full_address`, `lat`, `lng`, `created_at`, `updated_at`, `deleted_at`) VALUES
+('USER00001', '31', '3174', '3174050', 'Ulfa Syariah Cintya', 'ulfa@gmail.com', 'ulfa10', '989898989898', '2020-01-06', 'Jl. Tambora terus ke dalam jakarta barat', '-6.16564100', '106.72284590', NULL, '2020-02-01 23:57:28', NULL),
+('USER00002', '31', '3174', '3174030', 'Muhsin Sutanto', 'muhsin@gmail.com', 'muhsin10', '909090880808', '2020-01-22', 'Jl. Palmerah terus ke dalam', '-6.16564100', '106.72284590', NULL, '2020-02-01 23:56:47', NULL);
 
 --
 -- Indexes for dumped tables
@@ -8074,7 +8087,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `complent_issue`
 --
 ALTER TABLE `complent_issue`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables

@@ -10,7 +10,14 @@
                         Logout Proses ... <i class="fas fa-refresh"></i>
                     </div>
                 </div>
-                <?php 
+                <?php
+                    if ($_SESSION['role'] == 2) {
+                        mysqli_query($conn, "UPDATE technician SET status='offline' WHERE id='$_SESSION[iduser]'");
+                    }
+                    
+                    if ($_SESSION['role'] == 3) {
+                        mysqli_query($conn, "UPDATE lead_technician SET status='offline' WHERE id='$_SESSION[iduser]'");
+                    }
                     session_destroy();
                     echo"<meta http-equiv='refresh' content='1;
                         url=login.php'>";
