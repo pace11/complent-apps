@@ -52,7 +52,7 @@
                                         <td><?= $data['fullname_lead'] ?></td>
                                         <td><?= $data['address_tech'] ?></td>
                                         <td><?= $data['handphone_tech'] ?></td>
-                                        <td><?= $data['status_tech'] == 'online' ? '<div class="badge badge-success">online</div>' : '<div class="badge badge-light">offline</div>' ?></td>
+                                        <td><?= getStatus($data['status_tech']) ?></td>
                                         <td>
                                             <a href="?page=technicianedit&id=<?= $data['id_tech'] ?>" class="btn btn-primary">edit</a>
                                             <a href="?page=techniciandelete&id=<?= $data['id_tech'] ?>" class="btn btn-danger">hapus</a>

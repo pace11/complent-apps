@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Login - PLN Sentani</title>
+  <title>Login - Bearlink Apps</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -47,7 +47,7 @@
                   </div>
                   <div class="form-group">
                     <label>Password</label>
-                    <input id="password-field" name="password" maxlength="10" type="text" class="form-control" autocomplete="off" required>
+                    <input id="password-field" name="password" maxlength="10" type="password" class="form-control" autocomplete="off" required>
                     <span toggle="#password-field" class="fa fa-eye field-icon toggle-password"></span>
                   </div>
                   <div class="form-group">
@@ -76,6 +76,10 @@
                   $ceklogin3 = mysqli_query($conn, "SELECT * FROM lead_technician WHERE BINARY email='$e' AND password='$p'");
                   $data3     = mysqli_fetch_array($ceklogin3);
                   $hit3      = mysqli_num_rows($ceklogin3);
+
+                  $ceklogin4 = mysqli_query($conn, "SELECT * FROM users WHERE BINARY email='$e' AND password='$p'");
+                  $data4     = mysqli_fetch_array($ceklogin4);
+                  $hit4      = mysqli_num_rows($ceklogin4);
                   
                   if ($hit1 > 0){
                     
@@ -120,6 +124,21 @@
                     $_SESSION['iduser']    = $data3['id'];
                     $_SESSION['email']     = $data3['email'];
                     $_SESSION['password']  = $data3['password'];
+                  }
+
+                  if ($hit4 > 0){
+                    
+                    echo '<div class="alert alert-success alert-dismissible show fade">'.
+                            '<div class="alert-body"><button class="close" data-dismiss="alert"><span>×</span></button>'.
+                              'Login berhasil <i class="fas fa-check-circle"></i></div>'.
+                        '</div>';
+
+                    echo "<meta http-equiv='refresh' content='1;
+                    url=index.php?page=beranda'>";
+                    $_SESSION['role']      = 4;
+                    $_SESSION['iduser']    = $data4['id'];
+                    $_SESSION['email']     = $data4['email'];
+                    $_SESSION['password']  = $data4['password'];
                   }
                 }
                 ?>

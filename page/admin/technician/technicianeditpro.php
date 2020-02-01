@@ -21,7 +21,7 @@
                             $district   = $_POST['district'];
                             $leadtech   = $_POST['leadtech'];
                             $password   = $_POST['password'];
-                            $handphone  = $_POST['handphone'];
+                            $handphone  = $_POST['hp'];
                             $address    = addslashes($_POST['address']);
 
                             $input = mysqli_query($conn, "UPDATE technician SET
@@ -35,7 +35,7 @@
                                             handphone          = '$handphone',
                                             date_of_birth      = '$dob',
                                             full_address       = '$address'
-                                            WHERE id           = '$id") or die (mysqli_error($conn));
+                                            WHERE id           = '$id'") or die (mysqli_error($conn));
                             if ($input){
                                 echo '<div class="alert alert-success alert-dismissible show fade">'.
                                         '<div class="alert-body"><button class="close" data-dismiss="alert"><span>×</span></button>'.

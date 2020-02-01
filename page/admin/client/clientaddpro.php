@@ -1,13 +1,13 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Teknisi</h1>
+            <h1>Klien</h1>
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Form tambah teknisi</h4>
+                        <h4>Form tambah klien</h4>
                     </div>
                     <div class="card-body">
                         <?php 
@@ -19,19 +19,15 @@
                             $provincy   = $_POST['provincy'];
                             $regency    = $_POST['regency'];
                             $district   = $_POST['district'];
-                            $leadtech   = $_POST['leadtech'];
                             $password   = $_POST['password'];
                             $handphone  = $_POST['hp'];
                             $address    = addslashes($_POST['address']);
 
-                            echo $leadtech;
-
-                            $input = mysqli_query($conn, "INSERT INTO technician SET
+                            $input = mysqli_query($conn, "INSERT INTO users SET
                                             id                 = '$id',
                                             province_id        = '$provincy',
                                             regency_id         = '$regency',
                                             district_id        = '$district',
-                                            lead_technician_id = '$leadtech',
                                             full_name          = '$fullname',
                                             email              = '$email',
                                             password           = '$password',
@@ -45,7 +41,7 @@
                                         '</div>'.
                                     '</div>';
                                 echo "<meta http-equiv='refresh' content='1;
-                                url=?page=technician'>";
+                                url=?page=client'>";
                             }
                         }
                         ?>
