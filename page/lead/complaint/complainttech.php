@@ -5,6 +5,19 @@ $q = mysqli_query($conn, "SELECT * FROM complent_issue
                         WHERE complent_issue.id=$_GET[id]");
 $data = mysqli_fetch_array($q);
 
+
+$d = mysqli_query($conn, "SELECT id, full_name, lat, lng from technician WHERE regency_id='$data[regency_id]'");
+while($datas = mysqli_fetch_array($d)) {
+    if (getTechAvailabe($datas['id'])) {
+        $a[] = [
+            'id' => $datas['id'],
+            'full_name' => $datas['full_name'],
+            'range' => round(getHaversine($datas['lat'],$datas['lng'], $data['lat'],$data['lng']),3).' Km',
+        ];
+    }
+}
+    $isi = json_encode($a);
+
 ?>
 
 <div class="main-content">
@@ -34,10 +47,9 @@ $data = mysqli_fetch_array($q);
                                         <label>Teknisi<small class="text-danger">*</small></label>
                                         <select class="form-control" name="tech" required>
                                         <option style="display:none;">-- pilih teknisi --</option>
-                                            <?php 
-                                                $q = mysqli_query($conn, "SELECT * from technician WHERE regency_id='$data[regency_id]'");
-                                                while($datas = mysqli_fetch_array($q)){
-                                                    echo '<option value='.$datas['id'].'>'.$datas['full_name'].'</option>';
+                                            <?php
+                                                foreach(json_decode($isi) as $val){
+                                                    echo '<option value='.$val->id.'>'.$val->full_name.' ('.$val->range.')</option>';
                                                 }
                                             ?>
                                         </select>

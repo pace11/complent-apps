@@ -43,6 +43,16 @@
         return $tmp;
     }
 
+    function getHaversine($latitude1, $longitude1, $latitude2, $longitude2) {
+        $earth_radius = 6371;
+        $dLat = deg2rad($latitude2 - $latitude1);
+        $dLon = deg2rad($longitude2 - $longitude1);
+        $a = sin($dLat/2) * sin($dLat/2) + cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * sin($dLon/2) * sin($dLon/2);
+        $c = 2 * asin(sqrt($a));
+        $d = $earth_radius * $c;
+        return $d;
+    }
+
     function getNameProvince($params) {
         include './lib/koneksi.php';
         $q = mysqli_query($conn, "SELECT * FROM provinces WHERE id='$params'");
@@ -137,6 +147,16 @@
             $tmp = '<a href="?page=complaintdone&id='.$params1.'" class="btn btn-info">Selesai</a>';
         }
         return $tmp;
+    }
+
+    function getTechAvailabe($params) {
+        include './lib/koneksi.php';
+        $hit = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM complent_issue WHERE technician_id='$params' AND status='inprogress'"));
+        if ($hit > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 ?>
