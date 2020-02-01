@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 01, 2020 at 06:04 PM
+-- Generation Time: Feb 01, 2020 at 07:51 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.13
 
@@ -67,8 +67,8 @@ CREATE TABLE `complent_issue` (
 --
 
 INSERT INTO `complent_issue` (`id`, `user_id`, `lead_technician_id`, `technician_id`, `description`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(10, 'USER00001', NULL, 'T00002', 'AC tidak berfungsi', 'inprogress', '2020-02-01 15:46:40', '2020-02-01 19:43:47', NULL),
-(11, 'USER00002', 'TL00002', 'T00002', 'Paket Data Habis, Tolong Dong', 'inprogress', '2020-02-01 19:12:59', '2020-02-01 19:19:13', NULL);
+(10, 'USER00001', 'TL00004', NULL, 'AC tidak berfungsi', 'inprogress', '2020-02-01 15:46:40', '2020-02-02 01:23:50', NULL),
+(11, 'USER00002', 'TL00002', NULL, 'Paket Data Habis, Tolong Dong', 'inprogress', '2020-02-01 19:12:59', '2020-02-01 19:19:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -7343,10 +7343,10 @@ CREATE TABLE `lead_technician` (
 --
 
 INSERT INTO `lead_technician` (`id`, `province_id`, `regency_id`, `district_id`, `full_name`, `email`, `password`, `handphone`, `date_of_birth`, `full_address`, `status`, `lat`, `lng`, `created_at`, `updated_at`, `deleted_at`) VALUES
-('TL00001', '31', '3172', '3172020', 'Evan Razak', 'evanrazak@gmail.com', 'evan10', '082200002222', '1993-05-05', 'Jl. Pembangunan Ciracas Jakarta Timur', 'online', '-6.16566620', '106.72286350', NULL, '2020-02-01 23:51:38', NULL),
+('TL00001', '31', '3172', '3172020', 'Evan Razak', 'evanrazak@gmail.com', 'evan10', '082200002222', '1993-05-05', 'Jl. Pembangunan Ciracas Jakarta Timur', 'offline', '-6.16566620', '106.72286350', NULL, '2020-02-01 23:51:38', NULL),
 ('TL00002', '31', '3174', '3174070', 'Muhammad Ibnu Mustafa', 'ibnumustafa@gmail.com', 'ibnu10', '081100002222', '1996-05-05', 'Jl. Cempaka Hijau Duri Kosambi Jakarta Barat', 'offline', '-6.16566620', '106.72286350', NULL, '2020-02-01 23:46:36', NULL),
 ('TL00003', '31', '3175', '3175010', 'Ahmad Sadam', 'ahmadsadam@gmail.com', 'ahmad10', '081200002222', '1994-05-05', 'Jl. Kelapa Sawit Penjaringan Jakarta Utara', 'offline', '-6.16566620', '106.72286350', NULL, '2020-02-01 23:34:29', NULL),
-('TL00004', '31', '3174', '3174070', 'Ageng Maulana', 'ageng@gmail.com', 'ageng10', '085757383939', '2020-01-07', 'Jl. Cengkareng Raya Sekali', 'offline', '-6.16563400', '106.72287100', NULL, '2020-02-01 23:33:22', NULL);
+('TL00004', '31', '3174', '3174070', 'Ageng Maulana', 'ageng@gmail.com', 'ageng10', '085757383939', '2020-01-07', 'Jl. Cengkareng Raya Sekali', 'online', '-6.16563400', '106.72287100', NULL, '2020-02-01 23:33:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -7968,8 +7968,8 @@ CREATE TABLE `technician` (
 --
 
 INSERT INTO `technician` (`id`, `province_id`, `regency_id`, `district_id`, `lead_technician_id`, `full_name`, `email`, `password`, `handphone`, `date_of_birth`, `full_address`, `status`, `lat`, `lng`, `created_at`, `updated_at`, `deleted_at`) VALUES
-('T00001', '31', '3172', '3172020', 'TL00001', 'Muhammad Iriansyah Putra Pratama', 'ryanjoker87@gmail.com', 'ryan10', '082248080870', '1996-06-05', 'Jl. Merdeka Jakarta Timur', 'offline', '-6.16564100', '106.72284590', NULL, '2020-02-01 23:28:49', NULL),
-('T00002', '31', '3174', '3174050', 'TL00002', 'Erlangga Thufail', 'erlangga@gmail.com', 'er10', '098789789789', '2020-01-22', 'Jl. Tambora terus ke dalam', 'offline', '-6.16564100', '106.72284380', NULL, '2020-02-01 23:04:10', NULL);
+('T00001', '31', '3174', '3174050', 'TL00001', 'Muhammad Iriansyah Putra Pratama', 'ryanjoker87@gmail.com', 'ryan10', '082248080870', '1996-06-05', 'Jl. Merdeka Jakarta Timur', 'offline', '-6.13965600', '106.80223100', NULL, '2020-02-01 23:28:49', NULL),
+('T00002', '31', '3174', '3174050', 'TL00002', 'Erlangga Thufail', 'erlangga@gmail.com', 'er10', '098789789789', '2020-01-22', 'Jl. Tambora terus ke dalam', 'offline', '-6.15186300', '106.79934600', NULL, '2020-02-01 23:04:10', NULL);
 
 -- --------------------------------------------------------
 
@@ -8000,8 +8000,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `province_id`, `regency_id`, `district_id`, `full_name`, `email`, `password`, `handphone`, `date_of_birth`, `full_address`, `lat`, `lng`, `created_at`, `updated_at`, `deleted_at`) VALUES
-('USER00001', '31', '3174', '3174050', 'Ulfa Syariah Cintya', 'ulfa@gmail.com', 'ulfa10', '989898989898', '2020-01-06', 'Jl. Tambora terus ke dalam jakarta barat', '-6.16564100', '106.72284590', NULL, '2020-02-01 23:57:28', NULL),
-('USER00002', '31', '3174', '3174030', 'Muhsin Sutanto', 'muhsin@gmail.com', 'muhsin10', '909090880808', '2020-01-22', 'Jl. Palmerah terus ke dalam', '-6.16564100', '106.72284590', NULL, '2020-02-01 23:56:47', NULL);
+('USER00001', '31', '3174', '3174050', 'Ulfa Syariah Cintya', 'ulfa@gmail.com', 'ulfa10', '989898989898', '2020-01-06', 'Jl. Tambora terus ke dalam jakarta barat', '-6.16000800', '106.80816900', NULL, '2020-02-01 23:57:28', NULL),
+('USER00002', '31', '3174', '3174030', 'Muhsin Sutanto', 'muhsin@gmail.com', 'muhsin10', '909090880808', '2020-01-22', 'Jl. Palmerah terus ke dalam', '-6.20405000', '106.78921400', NULL, '2020-02-01 23:56:47', NULL);
 
 --
 -- Indexes for dumped tables
