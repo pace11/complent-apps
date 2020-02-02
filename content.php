@@ -7,6 +7,9 @@
       if ($page == "beranda") include("page/admin/beranda.php");
       elseif ($page == "logout") include("page/logout.php");
 
+      // ---------------------------- profil ----------------------------
+      elseif ($page == "profile")                      include("page/admin/profile/profile.php");
+
       // ---------------------------- technician ----------------------------
       elseif ($page == "technician")                   include("page/admin/technician/technician.php");
       elseif ($page == "technicianadd")                include("page/admin/technician/technicianadd.php");
