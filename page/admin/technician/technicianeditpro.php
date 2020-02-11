@@ -43,7 +43,7 @@
                                         '</div>'.
                                     '</div>';
                                 echo "<meta http-equiv='refresh' content='1;
-                                url=?page=pelanggan'>";
+                                url=?page=technician'>";
                             }
                         }
                         ?>

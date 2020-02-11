@@ -144,7 +144,7 @@
     function getUpdateDone($params1, $params2) {
         $tmp = '';
         if ($params2 == 'inprogress') {
-            $tmp = '<a href="?page=complaintdone&id='.$params1.'" class="btn btn-info">Selesai</a>';
+            $tmp = '<a href="?page=complaintdone&id='.$params1.'" class="btn btn-info">Selesai</a><a href="?page=complaintfailed&id='.$params1.'" class="btn btn-danger">Tidak Selesai</a>';
         }
         return $tmp;
     }

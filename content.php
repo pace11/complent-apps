@@ -55,6 +55,7 @@
       // ---------------------------- complaint ----------------------------
       elseif ($page == "complaint")                    include("page/technician/complaint/complaint.php");
       elseif ($page == "complaintdone")                include("page/technician/complaint/complaintdone.php");
+      elseif ($page == "complaintfailed")              include("page/technician/complaint/complaintfailed.php");
 
       elseif ($page == "logout") include("page/logout.php");
     break;

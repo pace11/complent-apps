@@ -1,2 +1,2 @@
-# riantri-skripsi
-Apps Skripsi GIS PLN Sentani
+# Ulfa-Skripsi
+Apps Complent-Apps

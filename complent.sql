@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 01, 2020 at 07:51 PM
+-- Generation Time: Feb 11, 2020 at 07:09 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.13
 
@@ -42,7 +42,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `full_name`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', 'admin123', NULL, NULL);
+(1, 'administrator', 'admin@gmail.com', 'admin123', NULL, '2020-02-02 17:51:07');
 
 -- --------------------------------------------------------
 
@@ -67,8 +67,7 @@ CREATE TABLE `complent_issue` (
 --
 
 INSERT INTO `complent_issue` (`id`, `user_id`, `lead_technician_id`, `technician_id`, `description`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(10, 'USER00001', 'TL00004', NULL, 'AC tidak berfungsi', 'inprogress', '2020-02-01 15:46:40', '2020-02-02 01:23:50', NULL),
-(11, 'USER00002', 'TL00002', NULL, 'Paket Data Habis, Tolong Dong', 'inprogress', '2020-02-01 19:12:59', '2020-02-01 19:19:13', NULL);
+(13, 'USER00001', 'TL00004', 'T00002', 'Jaringan Internet Bermasalah', 'failed', '2020-02-07 00:54:54', '2020-02-07 01:56:48', NULL);
 
 -- --------------------------------------------------------
 
@@ -7346,7 +7345,7 @@ INSERT INTO `lead_technician` (`id`, `province_id`, `regency_id`, `district_id`,
 ('TL00001', '31', '3172', '3172020', 'Evan Razak', 'evanrazak@gmail.com', 'evan10', '082200002222', '1993-05-05', 'Jl. Pembangunan Ciracas Jakarta Timur', 'offline', '-6.16566620', '106.72286350', NULL, '2020-02-01 23:51:38', NULL),
 ('TL00002', '31', '3174', '3174070', 'Muhammad Ibnu Mustafa', 'ibnumustafa@gmail.com', 'ibnu10', '081100002222', '1996-05-05', 'Jl. Cempaka Hijau Duri Kosambi Jakarta Barat', 'offline', '-6.16566620', '106.72286350', NULL, '2020-02-01 23:46:36', NULL),
 ('TL00003', '31', '3175', '3175010', 'Ahmad Sadam', 'ahmadsadam@gmail.com', 'ahmad10', '081200002222', '1994-05-05', 'Jl. Kelapa Sawit Penjaringan Jakarta Utara', 'offline', '-6.16566620', '106.72286350', NULL, '2020-02-01 23:34:29', NULL),
-('TL00004', '31', '3174', '3174070', 'Ageng Maulana', 'ageng@gmail.com', 'ageng10', '085757383939', '2020-01-07', 'Jl. Cengkareng Raya Sekali', 'online', '-6.16563400', '106.72287100', NULL, '2020-02-01 23:33:22', NULL);
+('TL00004', '31', '3174', '3174070', 'Ageng Maulana', 'ageng@gmail.com', 'ageng10', '085757383939', '2020-01-07', 'Jl. Cengkareng Raya Sekali', 'offline', '-6.16563400', '106.72287100', NULL, '2020-02-01 23:33:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -7969,7 +7968,17 @@ CREATE TABLE `technician` (
 
 INSERT INTO `technician` (`id`, `province_id`, `regency_id`, `district_id`, `lead_technician_id`, `full_name`, `email`, `password`, `handphone`, `date_of_birth`, `full_address`, `status`, `lat`, `lng`, `created_at`, `updated_at`, `deleted_at`) VALUES
 ('T00001', '31', '3174', '3174050', 'TL00001', 'Muhammad Iriansyah Putra Pratama', 'ryanjoker87@gmail.com', 'ryan10', '082248080870', '1996-06-05', 'Jl. Merdeka Jakarta Timur', 'offline', '-6.13965600', '106.80223100', NULL, '2020-02-01 23:28:49', NULL),
-('T00002', '31', '3174', '3174050', 'TL00002', 'Erlangga Thufail', 'erlangga@gmail.com', 'er10', '098789789789', '2020-01-22', 'Jl. Tambora terus ke dalam', 'offline', '-6.15186300', '106.79934600', NULL, '2020-02-01 23:04:10', NULL);
+('T00002', '31', '3174', '3174050', 'TL00002', 'Erlangga Thufail', 'erlangga@gmail.com', 'er10', '098789789789', '2020-01-22', 'Jl. Tambora terus ke dalam', 'online', '-6.15186300', '106.79934600', NULL, '2020-02-01 23:04:10', NULL),
+('T00003', '31', '3174', '3174010', 'TL00004', 'Muhammad Anshar ', 'anshar@gmail.com', 'anshar10', '080840184018', '2020-02-06', 'Jl. Puri Kembangan ', NULL, '-6.20182700', '106.74406200', NULL, NULL, NULL),
+('T00004', '31', '3174', '3174080', 'TL00004', 'Matlail Fajri', 'matlail@gmail.com', 'lai10', '089869689896', '1996-03-02', 'Jl. Raya Kalideres', NULL, '-6.14297700', '106.69704600', NULL, NULL, NULL),
+('T00005', '31', '3174', '3174060', 'TL00004', 'Dimas Agil', 'dimas@gmail.com', 'dimas10', '089897976464', '1993-02-24', 'Jl. Taman Sari Raya No. 14', NULL, '-6.15094400', '106.82057600', NULL, NULL, NULL),
+('T00006', '31', '3174', '3174040', 'TL00004', 'Rangga Adi', 'rangga@gmail.com', 'rangga10', '089765656656', '1990-02-02', 'Jl. Grogol Petamburan Raya No.21', NULL, '-6.17540000', '106.78364200', NULL, NULL, NULL),
+('T00007', '31', '3174', '3174070', 'TL00001', 'Prasetyo Dwi', 'dwi@gmail.com', 'dwi10', '089898698964', '1985-06-16', 'Jl. Cengkareng No. 24', NULL, '-6.14941700', '106.73076400', NULL, NULL, NULL),
+('T00008', '31', '3174', '3174020', 'TL00004', 'Hakim Putra', 'hakim@gmail.com', 'hakim10', '089686899040', '1984-02-06', 'Jl. Kebon Jeruk No.120', NULL, '-6.16236700', '106.76305100', NULL, NULL, NULL),
+('T00009', '31', '3174', '3174030', 'TL00004', 'Aga ', 'aga@gmail.com', 'aga10', '090907907960', '1989-02-12', 'Jl. Palmerah Raya No. 38', NULL, '-6.19882900', '106.78966600', NULL, NULL, NULL),
+('T00010', '31', '3172', '3172020', 'TL00001', 'Agus Budi ', 'agus@gmail.com', 'agus10', '086858585858', '1979-02-02', 'Jl. Ciracas No. 97', NULL, '-6.33165500', '106.88189300', NULL, NULL, NULL),
+('T00011', '31', '3174', '3174010', 'TL00004', 'Jamaludin Lukman', 'jamal@gmail.com', 'jamal10', '085858080583', '1992-04-07', 'Jl. Kembangan No. 75', NULL, '-6.20086700', '106.75143200', NULL, NULL, NULL),
+('T00012', '31', '3172', '3172050', 'TL00003', 'Pandu Dwayana', 'pandu@gmail.com', 'pandu10', '090867898696', '1972-02-01', 'Jl. Petamburan No. 55', NULL, '-6.15952800', '106.79522900', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -8087,7 +8096,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `complent_issue`
 --
 ALTER TABLE `complent_issue`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

@@ -23,8 +23,6 @@
                             $handphone  = $_POST['hp'];
                             $address    = addslashes($_POST['address']);
 
-                            echo $leadtech;
-
                             $input = mysqli_query($conn, "INSERT INTO lead_technician SET
                                             id                 = '$id',
                                             province_id        = '$provincy',

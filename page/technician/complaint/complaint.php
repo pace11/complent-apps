@@ -18,6 +18,7 @@
                                         <th>ID</th>
                                         <th>Id User</th>
                                         <th>Nama User</th>
+                                        <th>Alamat User</th>
                                         <th>Nama Lead Teknisi</th>
                                         <th>Nama Teknisi</th>
                                         <th>Description</th>
@@ -30,24 +31,26 @@
                                 <tbody>
                                 <?php
                                 $no = 1; 
-                                $q = mysqli_query($conn, "SELECT * FROM complent_issue WHERE technician_id='$auth[id]'") or die (mysqli_error($conn));
+                                $q = mysqli_query($conn, "SELECT * FROM complent_issue
+                                                        JOIN users ON complent_issue.user_id=users.id") or die (mysqli_error($conn));
                                 while($data=mysqli_fetch_array($q)){
                                 ?>
                                     <tr>
                                         <td><?= $no ?></td>
                                         <td>
-                                            <div class="badge badge-info"><i class="fas fa-user"></i> <?= $data['id'] ?></div>
+                                            <div class="badge badge-info"><i class="fas fa-user"></i> <?= $data[0] ?></div>
                                         </td>
                                         <td><div class="badge badge-info"><i class="fas fa-user"></i> <?= $data['user_id'] ?></div></td>
                                         <td><?= getDataUser($data['user_id']) ?></td>
+                                        <td><?= $data['full_address'] ?></td>
                                         <td><?= getDataLead($data['lead_technician_id']) ?></td>
                                         <td><?= getDataTech($data['technician_id']) ?></td>
                                         <td><?= $data['description'] ?></td>
                                         <td><?= getStatus($data['status']) ?></td>
-                                        <td><?= dateFormat($data['created_at']) ?></td>
-                                        <td><?= dateFormat($data['updated_at']) ?></td>
+                                        <td><?= dateFormat($data[6]) ?></td>
+                                        <td><?= dateFormat($data[7]) ?></td>
                                         <td>
-                                            <?= getUpdateDone($data['id'], $data['status']) ?>
+                                            <?= getUpdateDone($data[0], $data['status']) ?>
                                         </td>
                                     </tr>
                                 <?php $no++; } ?>
