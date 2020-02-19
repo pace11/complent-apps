@@ -12,10 +12,12 @@ while($datas = mysqli_fetch_array($d)) {
         $a[] = [
             'id' => $datas['id'],
             'full_name' => $datas['full_name'],
-            'range' => round(getHaversine($datas['lat'],$datas['lng'], $data['lat'],$data['lng']),3).' Km',
+            'range' => round(getHaversine($datas['lat'],$datas['lng'], $data['lat'],$data['lng']),3),
         ];
     }
 }
+    $keys = array_column($a, 'range');
+    array_multisort($keys, SORT_ASC, $a);
     $isi = json_encode($a);
 
 ?>
@@ -49,7 +51,7 @@ while($datas = mysqli_fetch_array($d)) {
                                         <option style="display:none;">-- pilih teknisi --</option>
                                             <?php
                                                 foreach(json_decode($isi) as $val){
-                                                    echo '<option value='.$val->id.'>'.$val->full_name.' ('.$val->range.')</option>';
+                                                    echo '<option value='.$val->id.'>'.$val->full_name.' ('.$val->range.' Km)</option>';
                                                 }
                                             ?>
                                         </select>
