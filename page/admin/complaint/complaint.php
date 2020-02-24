@@ -8,6 +8,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Data Komplain Klien</h4>
+                        <div class="card-header-action">
+                            <a href="?page=complaintprint" class="btn btn-info btn-icon icon-left"><i class="fas fa-print"></i>Print</a>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

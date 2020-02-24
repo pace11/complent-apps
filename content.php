@@ -41,6 +41,7 @@
       elseif ($page == "complaint")                    include("page/admin/complaint/complaint.php");
       elseif ($page == "complaintlead")                include("page/admin/complaint/complaintlead.php");
       elseif ($page == "complaintleadpro")             include("page/admin/complaint/complaintleadpro.php");
+      elseif ($page == "complaintprint")               include("page/admin/complaint/complaintprint.php");
 
     break;
     case 2:
