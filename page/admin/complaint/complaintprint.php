@@ -25,7 +25,7 @@
                             </div>
                     </div>
                     <div class="card-footer">
-                        <input type="submit" name="submit" class="btn btn-primary" value="Simpan">
+                        <input type="submit" name="submit" class="btn btn-primary" value="Cetak">
                         <a href="?page=complaint" class="btn btn-secondary">Batal</a>
                     </div>
                     </form>
